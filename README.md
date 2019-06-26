@@ -11,7 +11,7 @@
             return (target, name, descriptor) => {
                 const oldValue = descriptor.value;
                 let timer = null;
-                descriptor.value = (...args) => {
+                descriptor.value = function (...args) {
                     if (timer) {
                         clearTimeout(timer);
                     }
@@ -32,7 +32,7 @@
                 let timer = null,
                     remaining = 0,
                     previous = +new Date();
-                descriptor.value = (...args) => {
+                descriptor.value = function (...args) {
                     let now = +new Date(),
                         remaining = now - previous;
                     if (remaining >= delay) {
